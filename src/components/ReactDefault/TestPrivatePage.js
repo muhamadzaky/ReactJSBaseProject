@@ -13,6 +13,7 @@ const cookies = new Cookies()
 class TestPrivatePage extends Component {
   removeCookies = () => {
     cookies.remove("session")
+    history.push("/")
   }
 
   render() {
