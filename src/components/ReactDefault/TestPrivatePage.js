@@ -6,6 +6,7 @@
 import React, { Component } from 'react'
 import { Row, Typography, Button, Space } from 'antd'
 import { ArrowLeftOutlined, DeleteOutlined } from '@ant-design/icons'
+import history from '../../common/history'
 import Cookies from 'universal-cookie'
 
 const cookies = new Cookies()
