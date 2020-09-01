@@ -9,7 +9,7 @@ import DemoTestPage from './DemoTestPage'
 
 class ReactDefaultPage extends Component {
   render() {
-    const { logo } = this.props
+    const { logo, isMobile } = this.props
     return (
       <div className="App">
         <header className="App-header">
@@ -33,7 +33,7 @@ class ReactDefaultPage extends Component {
           </div>
         </header>
         <section key="Demo">
-          <DemoTestPage />
+          <DemoTestPage isMobile={isMobile} />
         </section>
       </div>
     )

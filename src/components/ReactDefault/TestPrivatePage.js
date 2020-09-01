@@ -26,7 +26,7 @@ class TestPrivatePage extends Component {
         </Row>
         <Row>
           <Space direction="vertical">
-            <Button type="danger" icon={<DeleteOutlined />} onClick={this.removeCookies}>Remove Cookie</Button>
+            <Button type="danger" icon={<DeleteOutlined />} onClick={this.removeCookies}>Remove Cookie and Back to Home Page</Button>
             <Button type="link" href="/" icon={<ArrowLeftOutlined />}>Back to home page</Button>
           </Space>
         </Row>

@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Typography, Button, Space, Spin, Popconfirm } from 'antd'
+import { Typography, Button, Space, Spin, Popconfirm, Tooltip } from 'antd'
 import { getTestData } from './store/test-action'
 import { LoadingOutlined } from '@ant-design/icons'
 import BrowserDetection from 'react-browser-detection'
@@ -67,9 +67,7 @@ class DemoTestPage extends Component {
       return (
         <div>
           { 
-            this.props.testLoading ? 
-              <Spin indicator={icon} /> 
-            : <span>{`${JSON.stringify(this.props.testMeta)} - ${this.props.testData}`}</span>
+            this.props.testLoading ? <Spin indicator={icon} /> : <span>{`${JSON.stringify(this.props.testMeta)} - ${this.props.testData}`}</span>
           }
         </div>
       )
@@ -94,6 +92,7 @@ class DemoTestPage extends Component {
   render() {
     const { Title } = Typography
     const getSession = cookies.get("session")
+    const { isMobile } = this.props
     return (
       <div className="test-container">
         <div className="test-header">
@@ -101,6 +100,14 @@ class DemoTestPage extends Component {
           <Title level={2}>This is a test page.</Title>
         </div>
         <div className="test-body">
+          <div>
+            <span>
+              <Tooltip placement="right" title="to make this true, open the dev tools and use mobile device mode.">
+                On mobile screen type: <span style={{ color: isMobile ? 'green' : 'red' }}>{isMobile ? "true" : "false"}</span>
+              </Tooltip>
+            </span>
+          </div>
+          <br/>
           <Space>
             <Button type="default" onClick={this.showBrowserInfo}>Check browser</Button>
             <Button type="primary" onClick={this.showAPIResult}>Test API</Button>
