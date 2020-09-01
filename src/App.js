@@ -27,7 +27,7 @@ class App extends Component {
   }
   
   componentDidMount() {
-    localStorage.setItem("appVer", "a 1.0.0")
+    localStorage.setItem("appVer", "a 1.0.1")
     enquireScreen((b) => {
       this.setState({
         isMobile: !!b
