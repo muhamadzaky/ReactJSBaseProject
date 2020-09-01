@@ -1,3 +1,15 @@
+## Requirement
+- nodejs: https://nodejs.org/en/download/
+- yarn: https://classic.yarnpkg.com/en/docs/install/#windows-stable
+
+## How to run the app
+- after cloning, type command on the root folder "yarn", "yarn install" or "npm install"
+- after the dependencies already installed, type command on the root folder "yarn start" or "npm start"
+- to add new dependencies, type command on the root folder "yarn add <name>" or "npm install <name>"
+- to remove dependencies, open package.json -> find dependencies that you want to remove -> clear from the list of dependencies -> type command on the root folder "yarn", "yarn install" or "npm install"
+
+### -
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
