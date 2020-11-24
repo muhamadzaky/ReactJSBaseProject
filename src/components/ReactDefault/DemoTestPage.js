@@ -5,14 +5,14 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Typography, Button, Space, Spin, Popconfirm, Tooltip } from 'antd'
+import { Typography, Button, Space, Spin, Popconfirm, Tooltip, Row, Col } from 'antd'
 import { getTestData } from './store/test-action'
 import { LoadingOutlined } from '@ant-design/icons'
+import history from '../../common/history'
 import BrowserDetection from 'react-browser-detection'
 import Cookies from 'universal-cookie'
 
 import './styles/DemoTestPage.scss'
-import history from '../../common/history'
 
 const cookies = new Cookies()
 
@@ -37,11 +37,7 @@ class DemoTestPage extends Component {
     if (showBrowserInfo) {
       return (
         <div>
-          You open this on &nbsp;
-          <BrowserDetection>
-            { browserHandler }
-          </BrowserDetection>
-          , { window.navigator.appVersion }.
+          You open this on &nbsp;<BrowserDetection>{ browserHandler }</BrowserDetection>, { window.navigator.appVersion }.
         </div>
       )
     }
@@ -49,25 +45,44 @@ class DemoTestPage extends Component {
 
   showAPIResult = () => {
     const { showAPIResult } = this.state
+    const { getTestData } = this.props
     const setState = async () => {
       this.setState({ showAPIResult: !this.state.showAPIResult, showBrowserInfo: false })
     }
 
     setState().then(() => {
       if (!showAPIResult) { 
-        this.props.getTestData()
+        getTestData()
       }
     })
   }
 
   displayAPIResult = () => {
     const { showAPIResult } = this.state
+    const { testLoading, testMeta, testData } = this.props
+    const { Text } = Typography
     const icon = <LoadingOutlined style={{ fontSize: 24 }} spin />
     if (showAPIResult) {
       return (
         <div>
-          { 
-            this.props.testLoading ? <Spin indicator={icon} /> : <span>{`${JSON.stringify(this.props.testMeta)} - ${this.props.testData}`}</span>
+          {
+            testLoading ?
+              <Row justify="space-around">
+                <Col>
+                  <Row justify="center">
+                    <Spin indicator={icon} />
+                  </Row>
+                  <Row>
+                    <Text>Getting data from API...</Text>
+                  </Row>
+                </Col>
+              </Row>
+            :
+              <Row justify="space-around">
+                <Text>
+                  {`${JSON.stringify(testMeta)} - ${testData}`}
+                </Text>
+              </Row>
           }
         </div>
       )
@@ -109,17 +124,25 @@ class DemoTestPage extends Component {
           </div>
           <br/>
           <Space>
-            <Button type="default" onClick={this.showBrowserInfo}>Check browser</Button>
-            <Button type="primary" onClick={this.showAPIResult}>Test API</Button>
+            <Button type="default" shape="round" onClick={this.showBrowserInfo}>Check browser</Button>
+            <Button type="primary" shape="round" onClick={this.showAPIResult}>Test API</Button>
           </Space>
           <div style={{ marginTop: 20 }}>
             <Button type="link" href="/PublicRouteExample">Go To Public Page</Button>
             {
               getSession === undefined ?
-              <Popconfirm placement="top" title="Access this page without adding Cookies?" onConfirm={this.onYesPrivatePage} onCancel={this.onNoPrivatePage} okText="Yes" cancelText="No">
-                <Button type="link">Go To Private Page</Button>
-              </Popconfirm>
-              : <Button type="link" href="/PrivateRouteExample">Go To Private Page</Button>
+                <Popconfirm 
+                  placement="top" 
+                  title="Access this page without adding Cookies?" 
+                  onConfirm={this.onYesPrivatePage} 
+                  onCancel={this.onNoPrivatePage} 
+                  okText="Yes" 
+                  cancelText="No"
+                >
+                  <Button type="link">Go To Private Page</Button>
+                </Popconfirm>
+              : 
+                <Button type="link" href="/PrivateRouteExample">Go To Private Page</Button>
             }
           </div>
           <div className="test-result">

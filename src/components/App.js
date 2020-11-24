@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import { configureStore } from './common/services/store/index'
+import { configureStore } from '../common/services/store/index'
 import { Provider } from 'react-redux'
 import { Router, Route } from 'react-router-dom'
-import history from './common/history'
+import history from '../common/history'
 import { enquireScreen } from 'enquire-js'
 
-import PrivateRoute from './components/Route/PrivateRoute'
+import PrivateRoute from './Route/PrivateRoute'
 
-import ReactDefaultPage from './components/ReactDefault/ReactDefaultPage'
-import PrivatePageExample from './components/ReactDefault/TestPrivatePage'
-import PublicPageExample from './components/ReactDefault/TestPublicPage'
+import ReactDefaultPage from './ReactDefault/ReactDefaultPage'
+import PrivatePageExample from './ReactDefault/TestPrivatePage'
+import PublicPageExample from './ReactDefault/TestPublicPage'
 
-import logo from './logo.svg'
-import './App.scss'
+import logo from '../assets/images/logo.svg'
+import '../assets/scss/App.scss'
 import 'antd/dist/antd.css'
 
 let isMobile
@@ -27,7 +27,6 @@ class App extends Component {
   }
   
   componentDidMount() {
-    localStorage.setItem("appVer", "a 1.0.1")
     enquireScreen((b) => {
       this.setState({
         isMobile: !!b
