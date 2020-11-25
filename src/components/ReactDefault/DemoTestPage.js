@@ -11,6 +11,7 @@ import { LoadingWithText } from '../General/GeneralComponent'
 import history from '../../common/history'
 import BrowserDetection from 'react-browser-detection'
 import Cookies from 'universal-cookie'
+import moment from 'moment'
 
 import './styles/DemoTestPage.scss'
 
@@ -84,8 +85,7 @@ class DemoTestPage extends Component {
   }
   
   onNoPrivatePage = () => {
-    const date = new Date()
-    date.setHours(date.getHours() + 1)
+    const date = moment(new Date()).add(1, 'hours').utc()._d
     const addCookies = async () => {
       cookies.set("session", true, { path: '/', expires: date })
     }
