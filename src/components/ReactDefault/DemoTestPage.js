@@ -5,9 +5,9 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Typography, Button, Space, Spin, Popconfirm, Tooltip, Row, Col } from 'antd'
+import { Typography, Button, Space, Popconfirm, Tooltip, Row } from 'antd'
 import { getTestData } from './store/test-action'
-import { LoadingOutlined } from '@ant-design/icons'
+import { LoadingWithText } from '../General/GeneralComponent'
 import history from '../../common/history'
 import BrowserDetection from 'react-browser-detection'
 import Cookies from 'universal-cookie'
@@ -61,22 +61,12 @@ class DemoTestPage extends Component {
     const { showAPIResult } = this.state
     const { testLoading, testMeta, testData } = this.props
     const { Text } = Typography
-    const icon = <LoadingOutlined style={{ fontSize: 24 }} spin />
     if (showAPIResult) {
       return (
         <div>
           {
             testLoading ?
-              <Row justify="space-around">
-                <Col>
-                  <Row justify="center">
-                    <Spin indicator={icon} />
-                  </Row>
-                  <Row>
-                    <Text>Getting data from API...</Text>
-                  </Row>
-                </Col>
-              </Row>
+              <LoadingWithText text="Getting data from API..." />
             :
               <Row justify="space-around">
                 <Text>
@@ -96,7 +86,6 @@ class DemoTestPage extends Component {
   onNoPrivatePage = () => {
     const date = new Date()
     date.setHours(date.getHours() + 1)
-    console.log(date)
     const addCookies = async () => {
       cookies.set("session", true, { path: '/', expires: date })
     }
@@ -105,9 +94,9 @@ class DemoTestPage extends Component {
   }
 
   render() {
-    const { Title } = Typography
-    const getSession = cookies.get("session")
+    const { Title, Text } = Typography
     const { isMobile } = this.props
+    const getSession = cookies.get("session")
     return (
       <div className="test-container">
         <div className="test-header">
@@ -118,7 +107,7 @@ class DemoTestPage extends Component {
           <div>
             <span>
               <Tooltip placement="right" title="to make this true, open the dev tools and use mobile device mode.">
-                On mobile screen type: <span style={{ color: isMobile ? 'green' : 'red' }}>{isMobile ? "true" : "false"}</span>
+                On mobile screen type: <Text strong style={{ color: isMobile ? 'green' : 'red' }}>{ isMobile ? "true" : "false" }</Text>
               </Tooltip>
             </span>
           </div>
