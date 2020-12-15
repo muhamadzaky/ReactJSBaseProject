@@ -20,7 +20,12 @@ const cookies = new Cookies()
 class DemoTestPage extends Component {
   state = {
     showBrowserInfo: false,
-    showAPIResult: false
+    showAPIResult: false,
+    isMobile: false
+  }
+
+  componentWillReceiveProps({ isMobile }) {
+    this.setState({ isMobile })
   }
 
   showBrowserInfo = () => {
@@ -47,15 +52,7 @@ class DemoTestPage extends Component {
   showAPIResult = () => {
     const { showAPIResult } = this.state
     const { getTestData } = this.props
-    const setState = async () => {
-      this.setState({ showAPIResult: !this.state.showAPIResult, showBrowserInfo: false })
-    }
-
-    setState().then(() => {
-      if (!showAPIResult) { 
-        getTestData()
-      }
-    })
+    this.setState({ showAPIResult: !this.state.showAPIResult, showBrowserInfo: false }, () => { if (!showAPIResult) getTestData() })
   }
 
   displayAPIResult = () => {
@@ -95,7 +92,7 @@ class DemoTestPage extends Component {
 
   render() {
     const { Title, Text } = Typography
-    const { isMobile } = this.props
+    const { isMobile } = this.state
     const getSession = cookies.get("session")
     return (
       <div className="test-container">
