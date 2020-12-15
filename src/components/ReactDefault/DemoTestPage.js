@@ -78,7 +78,7 @@ class DemoTestPage extends Component {
   }
 
   onYesPrivatePage = () => {
-    history.push("/PrivateRouteExample")
+    history.push("/react-base/PrivateRouteExample")
   }
   
   onNoPrivatePage = () => {
@@ -87,7 +87,7 @@ class DemoTestPage extends Component {
       cookies.set("session", true, { path: '/', expires: date })
     }
 
-    addCookies().then(() => { history.push("/PrivateRouteExample") })
+    addCookies().then(() => { history.push("/react-base/PrivateRouteExample") })
   }
 
   render() {
@@ -114,7 +114,7 @@ class DemoTestPage extends Component {
             <Button type="primary" shape="round" onClick={this.showAPIResult}>Test API</Button>
           </Space>
           <div style={{ marginTop: 20 }}>
-            <Button type="link" href="/PublicRouteExample">Go To Public Page</Button>
+            <Button type="link" href="/react-base/PublicRouteExample">Go To Public Page</Button>
             {
               getSession === undefined ?
                 <Popconfirm 
@@ -128,7 +128,7 @@ class DemoTestPage extends Component {
                   <Button type="link">Go To Private Page</Button>
                 </Popconfirm>
               : 
-                <Button type="link" href="/PrivateRouteExample">Go To Private Page</Button>
+                <Button type="link" href="/react-base/PrivateRouteExample">Go To Private Page</Button>
             }
           </div>
           <div className="test-result">

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { configureStore } from '../common/services/store/index'
 import { Provider } from 'react-redux'
-import { Router, Route } from 'react-router-dom'
+import { Router, Route, Redirect } from 'react-router-dom'
 import history from '../common/history'
 import { enquireScreen } from 'enquire-js'
 
@@ -35,12 +35,14 @@ class App extends Component {
   }
   
   render() {
+    const base = "/react-base"
     return (
       <Provider store={configureStore}>
         <Router history={history}>
-          <Route exact path="/" render={props => <ReactDefaultPage {...props} logo={logo} isMobile={this.state.isMobile} />} />
-          <Route exact path="/PublicRouteExample" component={PublicPageExample} />
-          <PrivateRoute exact path="/PrivateRouteExample" component={PrivatePageExample} />
+          <Redirect exact from="/" to={base} />
+          <Route exact path={base} render={props => <ReactDefaultPage {...props} logo={logo} isMobile={this.state.isMobile} />} />
+          <Route exact path={`${base}/PublicRouteExample`} component={PublicPageExample} />
+          <PrivateRoute exact path={`${base}/PrivateRouteExample`} component={PrivatePageExample} />
         </Router>
       </Provider>
     )
