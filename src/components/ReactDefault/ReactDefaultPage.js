@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react'
 import { ArrowDownOutlined } from '@ant-design/icons'
+import { Link } from 'react-scroll'
 import DemoTestPage from './DemoTestPage'
 
 class ReactDefaultPage extends Component {
@@ -26,13 +27,15 @@ class ReactDefaultPage extends Component {
             Learn React
           </a>
           <div style={{ display: 'block', position: 'absolute', bottom: '20px' }}>
-            <div>Scroll to test page</div>
-            <div>
-              <ArrowDownOutlined color="#fff" />
-            </div>
+            <Link to="Demo" spy={true} smooth="easeInOutQuad" duration={1000}>
+              <div>Scroll to test page</div>
+              <div>
+                <ArrowDownOutlined color="#fff" />
+              </div>
+            </Link>
           </div>
         </header>
-        <section key="Demo">
+        <section id="Demo">
           <DemoTestPage isMobile={isMobile} />
         </section>
       </div>

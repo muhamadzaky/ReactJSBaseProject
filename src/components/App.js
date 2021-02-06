@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { configureStore } from '../common/services/store/index'
 import { Provider } from 'react-redux'
-import { Router, Route, Redirect } from 'react-router-dom'
+import { Router, Route, Redirect, Switch } from 'react-router-dom'
 import history from '../common/history'
 import { enquireScreen } from 'enquire-js'
 
@@ -10,6 +10,9 @@ import PrivateRoute from './Route/PrivateRoute'
 import ReactDefaultPage from './ReactDefault/ReactDefaultPage'
 import PrivatePageExample from './ReactDefault/TestPrivatePage'
 import PublicPageExample from './ReactDefault/TestPublicPage'
+import ReactHooksExample from './ReactDefault/ReactHooksExample'
+import OverviewPage from './CustomComponent/OverviewPage'
+import NotFoundPage from './NotFound'
 
 import logo from '../assets/images/logo.svg'
 import '../assets/scss/App.scss'
@@ -35,14 +38,18 @@ class App extends Component {
   }
   
   render() {
-    const base = "/react-base"
     return (
       <Provider store={configureStore}>
         <Router history={history}>
-          <Redirect exact from="/" to={base} />
-          <Route exact path={base} render={props => <ReactDefaultPage {...props} logo={logo} isMobile={this.state.isMobile} />} />
-          <Route exact path={`${base}/PublicRouteExample`} component={PublicPageExample} />
-          <PrivateRoute exact path={`${base}/PrivateRouteExample`} component={PrivatePageExample} />
+          <Switch>
+            <Route exact path="/" render={props => <ReactDefaultPage {...props} logo={logo} isMobile={this.state.isMobile} />} />
+            <Route exact path={`/ReactHooksExample`} component={ReactHooksExample} />
+            <Route exact path={`/ComponentsOverview`} component={OverviewPage} />
+            <Route exact path={`/PublicRouteExample`} component={PublicPageExample} />
+            <PrivateRoute exact path={`/PrivateRouteExample`} component={PrivatePageExample} />
+            <Route exact path="/NotFound" component={NotFoundPage} />
+            <Redirect from="*" to="/NotFound" />
+          </Switch>
         </Router>
       </Provider>
     )

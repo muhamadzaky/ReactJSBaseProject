@@ -14,7 +14,7 @@ const cookies = new Cookies()
 class TestPrivatePage extends Component {
   removeCookies = () => {
     cookies.remove("session")
-    history.push("/react-base")
+    history.push("/")
   }
 
   render() {
@@ -27,7 +27,7 @@ class TestPrivatePage extends Component {
           </Row>
           <Row justify="space-around" style={{ textAlign: 'center', margin: '100px 0' }}>
             <Space direction="vertical">
-              <Button type="primary" shape="round" href="/react-base" icon={<ArrowLeftOutlined />}>Back to home page</Button>
+              <Button type="primary" shape="round" href="/" icon={<ArrowLeftOutlined />}>Back to home page</Button>
               <Divider>OR</Divider>
               <Button type="danger" shape="round" icon={<DeleteOutlined />} onClick={this.removeCookies}>Remove Cookie and Back to Home Page</Button>
             </Space>

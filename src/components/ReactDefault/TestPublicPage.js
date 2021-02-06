@@ -6,7 +6,6 @@
 import React, { Component } from 'react'
 import { Row, Typography, Button, Col } from 'antd'
 import { ArrowLeftOutlined } from '@ant-design/icons'
-import ReactHooksExample from './ReactHooksExample'
 
 class TestPublicPage extends Component {
   render() {
@@ -17,11 +16,8 @@ class TestPublicPage extends Component {
           <Row>
             <Title>This is was an example for Public Page</Title>
           </Row>
-          <Row justify="space-around" align="middle">
-            <ReactHooksExample />
-          </Row>
           <Row justify="space-around" style={{ textAlign: 'center', margin: '100px 0' }}>
-            <Button type="primary" shape="round" href="/react-base" icon={<ArrowLeftOutlined />}>Back to home page</Button>
+            <Button type="primary" shape="round" href="/" icon={<ArrowLeftOutlined />}>Back to home page</Button>
           </Row>
         </Col>
       </Row>

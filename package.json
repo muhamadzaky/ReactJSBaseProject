@@ -1,7 +1,7 @@
 {
   "name": "reactjsbaseproject",
   "displayName": "ReactJS Base Project",
-  "homepage": "http://muhamadzaky.github.io/react-base",
+  "homepage": "http://muhamadzaky.github.io/",
   "preview": false,
   "publisher": "Muhamad Zaky",
   "description": "This is a React JS Skeleton / Base Project developed by Muhamad Zaky",
@@ -72,6 +72,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
+    "react-scroll": "^1.8.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "resolve": "1.15.0",
